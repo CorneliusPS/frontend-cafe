@@ -1,0 +1,99 @@
+<nz-spin [nzSpinning]="isSpinning" [nzSize]="'large'" nzTip="Working...">
+  <div class="tbcontent">
+    <nz-table
+      nzShowSizeChanger
+      [nzData]="reservations"
+      [nzFrontPagination]="false"
+      [nzTotal]="total"
+      [nzPageSizeOptions]="[5, 10]"
+      [nzShowPagination]="true"
+      [nzPageSize]="pageSize"
+      [nzPageIndex]="pageIndex"
+      (nzQueryParams)="onQueryParamsChange($event)"
+    >
+      <thead>
+        <tr>
+          <th nzColumnKey="idReservation" [nzSortFn]="true">ID</th>
+          <th nzColumnKey="username">Username</th>
+          <th nzColumnKey="tableType" [nzSortFn]="true">Table Type</th>
+          <th nzColumnKey="deskripsi">Description</th>
+          <th nzColumnKey="reservationDate" [nzSortFn]="true">
+            Reservation Date
+          </th>
+          <th nzColumnKey="reservationTime">Reservation Time</th>
+          <th nzColumnKey="reservationStatus" [nzSortFn]="true">Status</th>
+
+          <th nzColumnKey="action">Action</th>
+        </tr>
+      </thead>
+      <tbody>
+        <tr *ngFor="let reservation of reservations">
+          <td style="font-weight: 600">
+            <strong>{{ reservation.idReservation }}</strong>
+          </td>
+          <td>
+            <strong>{{ reservation.user.username }}</strong>
+          </td>
+
+          <td>
+            <strong>{{ reservation.tableType }}</strong>
+          </td>
+          <td>
+            <strong>{{ reservation.deskripsi }}</strong>
+          </td>
+          <td>
+            <strong>{{ reservation.reservationDate | date }}</strong>
+          </td>
+          <td>
+            <strong>{{ reservation.reservationDate | date : "h:mm a" }}</strong>
+          </td>
+          <td>
+            <strong
+              [ngStyle]="{
+                color:
+                  reservation.reservationStatus === 'APPROVED'
+                    ? 'green'
+                    : reservation.reservationStatus === 'DISAPPROVED'
+                    ? 'blue'
+                    : 'red'
+              }"
+            >
+              {{ reservation.reservationStatus }}
+            </strong>
+          </td>
+          <td>
+            <span *ngIf="reservation.reservationStatus == 'PENDING'">
+              <button
+                style="margin-left: 10px"
+                nzSize="small"
+                nz-button
+                nzType="primary"
+                (click)="
+                  changeReservationStatus(reservation.idReservation, 'Approve')
+                "
+                nzDanger
+              >
+                Approve
+              </button>
+              <button
+                style="margin-left: 10px"
+                nzSize="small"
+                nz-button
+                nzType="primary"
+                (click)="
+                  changeReservationStatus(
+                    reservation.idReservation,
+                    'Disapprove'
+                  )
+                "
+                nzDanger
+              >
+                Disapprove
+              </button>
+            </span>
+          </td>
+        </tr>
+      </tbody>
+    </nz-table>
+  </div>
+</nz-spin>
