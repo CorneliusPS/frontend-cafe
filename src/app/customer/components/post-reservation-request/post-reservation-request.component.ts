@@ -12,21 +12,9 @@ import { NzMessageService } from 'ng-zorro-antd/message';
 export class PostReservationRequestComponent implements OnInit {
   TableType: string[] = [
     'Standard Table',
-    'Booth',
+    'Outdoor Table',
     'Communal Table',
     'Bar Table',
-    'Outdoor Table',
-    'High-top Table',
-    'Banquette',
-    "Chef's Table",
-    'Convertible Table',
-    'Corner Table',
-    'Family-Style Table',
-    'Window-side Table',
-    'Private Dining Table',
-    'Lounge Table',
-    'Round Table',
-    'Custom Table',
   ];
 
   validateForm!: FormGroup;
