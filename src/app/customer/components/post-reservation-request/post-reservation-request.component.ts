@@ -41,7 +41,7 @@ export class PostReservationRequestComponent implements OnInit {
       .postReservationRequest(this.validateForm.value)
       .subscribe((res) => {
         this.isSpinning = false;
-        if (res.data.idReservation != null) {
+        if (res.data != null) {
           this.message.success(`Reservation Requested Successfully.`, {
             nzDuration: 5000,
           });

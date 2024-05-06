@@ -8,7 +8,7 @@
     nz-input
     placeholder="Enter Keyword to search"
     nzSize="large"
-    style="width: 20%; background-color: rgba(0, 0, 0, 0.495)"
+    style="width: 20%; background-color: rgba(255, 255, 255, 0.329)"
     formControlName="title"
   />
   <button
@@ -21,7 +21,6 @@
       color: white;
       background-color: chocolate;
     "
-    [disabled]="validateForm.invalid"
   >
     Search
   </button>
@@ -47,8 +46,12 @@
       </h2>
       <hr />
       <h3>
-        Price: <b>{{ product.hargaBarang }}</b> <br />Description:
-        <b>{{ product.deskripsiBarang }}</b> <br />Category:
+        Price:
+        <b>{{ product.hargaBarang | currency : "Rp." : "symbol" : "1.0-0" }}</b>
+        <br />
+        Description:
+        <b>{{ product.deskripsiBarang }}</b> <br />
+        Category:
         <b>{{ product.kategoriBarang.namaKategori }}</b>
       </h3>
       <hr />

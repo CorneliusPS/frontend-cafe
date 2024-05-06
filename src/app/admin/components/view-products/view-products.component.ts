@@ -55,7 +55,7 @@ export class ViewProductsComponent implements OnInit {
       )
       .subscribe((res) => {
         console.log(res);
-        res.forEach((element) => {
+        res.data.forEach((element) => {
           element.processedImg = 'data:image/jpeg;base64,' + element.img;
           this.Products.push(element);
           this.isSpinning = false;

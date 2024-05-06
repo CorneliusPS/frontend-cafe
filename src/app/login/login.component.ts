@@ -36,7 +36,7 @@ export class LoginComponent implements OnInit {
           console.log(res.data.userId);
           console.log(res.data.akses.namaAkses);
           console.log(res.data.token);
-          if (res.data.userId != null) {
+          if (res.data != null) {
             const user = {
               id: res.data.userId,
               role: res.data.akses.namaAkses,

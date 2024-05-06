@@ -16,7 +16,6 @@
     [nzSize]="size"
     nzType="primary"
     style="margin-left: 15px; background-color: chocolate; color: white"
-    [disabled]="validateForm.invalid"
   >
     Search
   </button>
@@ -41,7 +40,11 @@
         </h2>
         <hr />
         <h3>
-          Price: <b>{{ product.hargaBarang }}</b> <br />
+          Price:
+          <b>{{
+            product.hargaBarang | currency : "Rp." : "symbol" : "1.0-0"
+          }}</b
+          ><br />
           Description: <b>{{ product.deskripsiBarang }}</b> <br />
           Category: <b>{{ product.kategoriBarang.namaKategori }}</b>
         </h3>
